@@ -1,0 +1,1 @@
+Web chat app create by: reactjs, nextjs, nodejs, socket.io

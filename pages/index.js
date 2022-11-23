@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef, createContext} from "react";
 
 
 import socketIOClient from "socket.io-client";
@@ -6,19 +6,25 @@ const host = "http://localhost:3001";
 
 import Login from 'components/Login'
 
-function App() {
+export const UserContextApp = createContext();
+function App({Component, pageProps}) {
     const [user, setUser] = useState([]);
-    const [id, setId] = useState();
 
-    const socketRef = useRef();
-    const messagesEnd = useRef();
+    const idSocket = ''
 
-    return (
-        <div className="box-chat">
+    useEffect(() => {
+        const setUserInDb = async () => {
+            try {
+                //get thong tin user
+            } catch (error) {
+                console.log('ERROR SETTING USER INFO IN DB', error)
+            }
+        }
+    }, [user])
 
+    if (!user) return <Login/>
 
-        </div>
-    );
+    return (<UserContextApp.Provider value={{user, idSocket}}><Component {...pageProps}/></UserContextApp.Provider>)
 }
 
 export default App;

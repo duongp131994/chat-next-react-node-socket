@@ -39,6 +39,16 @@ nextApp.prepare().then(() => {
             console.log("Client disconnected");
         });
 
+        // fetch existing users
+        const users = [];
+        for (let [id, socket] of io.of("/").sockets) {
+            users.push({
+                userID: id,
+                username: socket.username,
+            });
+        }
+        socket.emit("users", users);
+
         socket.on("send_message", (data) => {
             console.log('send_message ' + data.name + ": " + data.message);
 

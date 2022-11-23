@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef, createContext} from "react";
 
 
+import socket from "components/socket";
 import socketIOClient from "socket.io-client";
 const host = "http://localhost:3001";
 
